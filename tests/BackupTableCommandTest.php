@@ -81,12 +81,13 @@ class BackupTableCommandTest extends TestCase
     public function it_can_backup_multiple_models()
     {
         $models = [Father::class, Mother::class];
+        $now = now();
 
         $this->artisan('backup:tables', ['targets' => $models])
             ->assertExitCode(BackupTableCommand::SUCCESS);
 
-        $backupTablePattern1 = 'fathers_backup_'.now()->format('Y_m_d_H_i_s');
-        $backupTablePattern2 = 'mothers_backup_'.now()->format('Y_m_d_H_i_s');
+        $backupTablePattern1 = 'fathers_backup_'.$now->format('Y_m_d_H_i_s');
+        $backupTablePattern2 = 'mothers_backup_'.$now->format('Y_m_d_H_i_s');
 
         $this->assertTrue(Schema::hasTable($backupTablePattern1));
 
