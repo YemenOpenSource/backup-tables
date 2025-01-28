@@ -25,6 +25,9 @@ composer require watheqalshowaiter/backup-tables
 Use the `BackupTables::generateBackup($tableToBackup)` Facade anywhere in your application and it will
 generate `$tableToBackup_backup_2024_08_22_17_40_01` table in the database with all the data and structure. Note that
 the datetime `2024_08_22_17_40_01` will be varied based on your datetime.
+ 
+You can also use the `php artisan backup:tables <targets>` command to back up tables,
+where `<targets>` is a space-separated list of tables names or models.
 
 ```php
 use WatheqAlshowaiter\BackupTables\BackupTables; // import the facade
@@ -35,7 +38,7 @@ class ChangeSomeData
     {
         BackupTables::generateBackup('users'); // will result: users_backup_2024_08_22_17_40_01
        
-        // change some data.. 
+        // change some data..
     }
 }
 ```
@@ -75,6 +78,12 @@ BackupTables::generateBackup('users', 'Y_d_m_H'); // can not generate the same b
 BackupTables::generateBackup('users', 'Y_d_m'); // can not generate the same backup in the same day
 ```
 
+- Using the artisan command for one or more tables/models
+```bash
+php artisan backup:tables users posts # users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
+php artisan backup:tables \App\Models\User \App\Models\Post # users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
+```
+
 ## Why?
 
 Sometimes you want to backup some database tables before changing data for whatever reason, this package serves this
@@ -84,6 +93,8 @@ beforehand.
 
 ## Features
 
+✅ Backup tables from the code or from the console command.
+ 
 ✅ Supports Laravel versions: 11, 10, 9, 8, 7, and 6.
 
 ✅ Supports PHP versions: 8.2, 8.1, 8.0, and 7.4.

@@ -3,6 +3,7 @@
 namespace WatheqAlshowaiter\BackupTables;
 
 use Illuminate\Support\ServiceProvider;
+use WatheqAlshowaiter\BackupTables\Commands\BackupTableCommand;
 
 class BackupTablesServiceProvider extends ServiceProvider
 {
@@ -13,9 +14,14 @@ class BackupTablesServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        // This migration works only in the package test
-        if ($this->app->runningInConsole() && $this->app->environment() === 'testing') {
-            $this->loadMigrationsFrom(__DIR__.'/../tests/database/migrations');
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                BackupTableCommand::class,
+            ]);
+
+            if($this->app->environment() === 'testing'){
+                $this->loadMigrationsFrom(__DIR__.'/../tests/database/migrations');
+            }
         }
     }
 }
