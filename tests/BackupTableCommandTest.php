@@ -16,7 +16,7 @@ class BackupTableCommandTest extends TestCase
     public function it_can_backup_a_table()
     {
         Schema::create('test_table', function ($table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
         });
@@ -33,7 +33,7 @@ class BackupTableCommandTest extends TestCase
     public function it_can_backup_a_table_by_classname()
     {
         Schema::create('test_table', function ($table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
         });
@@ -60,7 +60,7 @@ class BackupTableCommandTest extends TestCase
 
         foreach ($tables as $table) {
             Schema::create($table, function ($table) {
-                $table->id();
+                $table->bigIncrements('id');
                 $table->string('name');
                 $table->timestamps();
             });
@@ -97,7 +97,7 @@ class BackupTableCommandTest extends TestCase
     public function it_fails_when_any_table_does_not_exist_but_saves_corrected_tables()
     {
         Schema::create('existing_table', function ($table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->timestamps();
         });
 
