@@ -20,7 +20,7 @@ class BackupTableCommand extends Command
         try {
             $result = BackupTables::generateBackup($tables);
 
-            if (!$result) {
+            if (! $result) {
                 $this->error('Failed to backup table.');
                 return self::FAILURE;
             }
