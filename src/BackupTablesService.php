@@ -111,7 +111,7 @@ class BackupTablesService
             'newCreatedTables' => "Newly created table: $newTableName",
         ];
 
-        // to prevent duplicating message if you use generateBackup() twice in the same request event for different tables
+        // to prevent a duplicating message if you use generateBackup() twice in the same request event for different tables
         Arr::forget($this->response, '0');
 
         return $result;

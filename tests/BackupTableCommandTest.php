@@ -26,10 +26,7 @@ class BackupTableCommandTest extends TestCase
 
         $backupTablePattern = 'test_table_backup_'.now()->format('Y_m_d_H_i_s');
 
-        $this->assertTrue(
-            Schema::hasTable($backupTablePattern),
-            "Backup table was not created"
-        );
+        $this->assertTrue(Schema::hasTable($backupTablePattern));
     }
 
     /** @test */
@@ -46,10 +43,7 @@ class BackupTableCommandTest extends TestCase
 
         $backupTablePattern = 'test_table_backup_'.now()->format('Y_m_d_H_i_s');
 
-        $this->assertTrue(
-            Schema::hasTable($backupTablePattern),
-            "Backup table was not created"
-        );
+        $this->assertTrue(Schema::hasTable($backupTablePattern));
     }
 
     /** @test */
@@ -72,16 +66,13 @@ class BackupTableCommandTest extends TestCase
             });
         }
 
-        $this->artisan('backup:tables', ['targets' => implode('  ', $tables)])
+        $this->artisan('backup:tables', ['targets' => $tables])
             ->assertSuccessful();
 
         foreach ($tables as $table) {
             $backupTablePattern = $table.'_backup_'.now()->format('Y_m_d_H_i_s');
 
-            $this->assertTrue(
-                Schema::hasTable($backupTablePattern),
-                "Backup table was not created"
-            );
+            $this->assertTrue(Schema::hasTable($backupTablePattern));
         }
 
     }
@@ -91,32 +82,33 @@ class BackupTableCommandTest extends TestCase
     {
         $models = [Father::class, Mother::class];
 
-        $this->artisan('backup:tables', ['targets' => implode('  ', $models)])
+        $this->artisan('backup:tables', ['targets' => $models])
             ->assertSuccessful();
 
         $backupTablePattern1 = 'fathers_backup_'.now()->format('Y_m_d_H_i_s');
         $backupTablePattern2 = 'mothers_backup_'.now()->format('Y_m_d_H_i_s');
 
-        $this->assertTrue(
-            Schema::hasTable($backupTablePattern1),
-            "Backup table was not created"
-        );
+        $this->assertTrue(Schema::hasTable($backupTablePattern1));
 
-        $this->assertTrue(
-            Schema::hasTable($backupTablePattern2),
-            "Backup table was not created"
-        );
+        $this->assertTrue(Schema::hasTable($backupTablePattern2));
     }
 
     /** @test */
-    public function it_fails_when_any_table_does_not_exist()
+    public function it_fails_when_any_table_does_not_exist_but_saved_corrected_tables()
     {
         Schema::create('existing_table', function ($table) {
             $table->id();
             $table->timestamps();
         });
 
-        $this->artisan('backup:tables', ['targets' => 'existing_table non_existent_table'])
+        $this->artisan('backup:tables', ['targets' => 'existing_table', 'non_existent_table'])
             ->assertSuccessful();
+
+        $backupExistingTablePattern = 'existing_table_backup_'.now()->format('Y_m_d_H_i_s');
+        $backupNonExistingTablePattern = 'non_existent_table_backup_'.now()->format('Y_m_d_H_i_s');
+
+        $this->assertTrue(Schema::hasTable($backupExistingTablePattern));
+
+        $this->assertFalse(Schema::hasTable($backupNonExistingTablePattern));
     }
 }

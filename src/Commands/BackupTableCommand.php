@@ -16,8 +16,6 @@ class BackupTableCommand extends Command
     {
         $tables = $this->argument('targets');
 
-        $tables = $this->getMultipleTables($tables);
-
         try {
             $result = BackupTables::generateBackup($tables);
 
@@ -31,19 +29,5 @@ class BackupTableCommand extends Command
             $this->error("Error backing up table: {$e->getMessage()}");
             return CommandCodes::FAILURE;
         }
-    }
-
-    /**
-     * @param $table
-     *
-     * @return false|string[]
-     */
-    private function getMultipleTables($table)
-    {
-        $tablesArr = explode(' ', $table);
-
-        return array_filter($tablesArr, function ($item) {
-            return !empty($item);
-        });
     }
 }
