@@ -10,7 +10,9 @@
 
 Backup single or multiple database tables with ease.
 
-> Note: if you want a full database backup with many features go for [Spatie Laravel Backup](https://github.com/spatie/laravel-backup).
+> [!NOTE]
+> If you want a full database backup with many features, go
+> for [Spatie Laravel Backup](https://github.com/spatie/laravel-backup).
 
 ## Installation
 
@@ -26,6 +28,9 @@ Use the `BackupTables::generateBackup($tableToBackup)` Facade anywhere in your a
 generate `$tableToBackup_backup_2024_08_22_17_40_01` table in the database with all the data and structure. Note that
 the datetime `2024_08_22_17_40_01` will be varied based on your datetime.
 
+You can also use the `php artisan backup:tables <targets>` command to back up tables,
+where `<targets>` is a space-separated list of table names or models.
+
 ```php
 use WatheqAlshowaiter\BackupTables\BackupTables; // import the facade
 
@@ -35,14 +40,14 @@ class ChangeSomeData
     {
         BackupTables::generateBackup('users'); // will result: users_backup_2024_08_22_17_40_01
        
-        // change some data.. 
+        // change some data..
     }
 }
 ```
 
 And More Customizations
 
-- You can use an array to backup more than one table
+- You can use an array to back up more than one table
 
 ```php
 BackupTables::generateBackup(['users', 'posts']); 
@@ -55,7 +60,8 @@ BackupTables::generateBackup(['users', 'posts']);
 ```php
 BackupTables::generateBackup(User::class); // users_backup_2024_08_22_17_40_01
 // or
-BackupTables::generateBackup([User::class, Post::class]); // users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01 
+BackupTables::generateBackup([User::class, Post::class]); //-php artisan backup:tables users posts # users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
+ users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01 
  
 ```
 
@@ -65,24 +71,37 @@ BackupTables::generateBackup([User::class, Post::class]); // users_backup_2024_0
 BackupTables::generateBackup('users', 'Y_d_m_H_i'); // users_backup_2024_22_08_17_40
 ```
 
-> *Note: be aware if you customize the datetime to wide datetime the package will check the backup datetime file and
-> will be skipped
-> the exact same datetime, so most of the time the default will be fine
-> For example: if you use this `Y_d_m_H` you can not generate the same backup in the same hour
+> [!WARNING]
+> When customizing the datetime format, be aware that backups with identical datetime values will be skipped.
+> For example, if you use this `Y_d_m_H` you cannot generate the same backup in the same hour.
+> The default format (Y_m_d_H_i_s) is recommended for most cases.
 
 ```php
 BackupTables::generateBackup('users', 'Y_d_m_H'); // can not generate the same backup in the same hour
 BackupTables::generateBackup('users', 'Y_d_m'); // can not generate the same backup in the same day
 ```
 
+- Using the artisan command for one or more tables/models
+
+```bash
+php artisan backup:tables users posts # users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
+php artisan backup:tables \\App\\Models\\User \\App\\Models\\Post # users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
+```
+
 ## Why?
 
-Sometimes you want to backup some database tables before changing data for whatever reason, this package serves this
-need. I used it personally before adding foreign keys for tables that required the removal of unlinked fields for parent tables.
-You may find some situation where you play with table data or you're afraid of missing data so you backup these tables
+Sometimes you want to back up some database tables before changing data for whatever reason, this package serves this
+need.
+
+I used it personally before adding foreign keys to tables that required removing unlinked fields from parent tables.
+
+You may find some situation where you play with table data, or you're afraid of missing data, so you back up these
+tables
 beforehand.
 
 ## Features
+
+✅ Backup tables from the code using (Facade) or from the console command.
 
 ✅ Supports Laravel versions: 11, 10, 9, 8, 7, and 6.
 
@@ -102,11 +121,15 @@ composer test
 
 ## Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+Please see [CHANGELOG](CHANGELOG.md) for more information on recent changes.
 
 ## Contributing
 
-If you have any ideas or suggestions to improve it or fix bugs, your contribution is welcome. I encourage you to look at [todos](./todos.md) which are the most important features that need to be added. If you have something different, submit an issue first to discuss or report a bug, then do a pull request.
+If you have any ideas or suggestions to improve it or fix bugs, your contribution is welcome.
+
+I encourage you to look at [todos](./todos.md) which are the most important features that need to be added.
+
+If you have something different, submit an issue first to discuss or report a bug, then do a pull request.
 
 ## Security Vulnerabilities
 
@@ -118,10 +141,8 @@ them.
 - [Watheq Alshowaiter](https://github.com/WatheqAlshowaiter)
 - [Omar Alalwi](https://github.com/omaralalwi) - This package is based on his initial code.
 - [All Contributors](../../contributors)
-  
 
 And a special thanks to [The King Creative](https://www.facebook.com/thkingcreative) for the logo ✨
-
 
 ## License
 
