@@ -22,7 +22,7 @@ class BackupTableCommandTest extends TestCase
         });
 
         $this->artisan('backup:tables', ['targets' => 'test_table'])
-            ->assertSuccessful();
+            ->assertExitCode(BackupTableCommand::SUCCESS);
 
         $backupTablePattern = 'test_table_backup_'.now()->format('Y_m_d_H_i_s');
 
@@ -39,7 +39,7 @@ class BackupTableCommandTest extends TestCase
         });
 
         $this->artisan(BackupTableCommand::class, ['targets' => 'test_table'])
-            ->assertSuccessful();
+            ->assertExitCode(BackupTableCommand::SUCCESS);
 
         $backupTablePattern = 'test_table_backup_'.now()->format('Y_m_d_H_i_s');
 
@@ -50,7 +50,7 @@ class BackupTableCommandTest extends TestCase
     public function it_fails_when_table_does_not_exist()
     {
         $this->artisan('backup:tables', ['targets' => 'non_existent_table'])
-            ->assertFailed();
+            ->assertExitCode(BackupTableCommand::FAILURE);
     }
 
     /** @test */
@@ -67,7 +67,7 @@ class BackupTableCommandTest extends TestCase
         }
 
         $this->artisan('backup:tables', ['targets' => $tables])
-            ->assertSuccessful();
+            ->assertExitCode(BackupTableCommand::SUCCESS);
 
         foreach ($tables as $table) {
             $backupTablePattern = $table.'_backup_'.now()->format('Y_m_d_H_i_s');
@@ -83,7 +83,7 @@ class BackupTableCommandTest extends TestCase
         $models = [Father::class, Mother::class];
 
         $this->artisan('backup:tables', ['targets' => $models])
-            ->assertSuccessful();
+            ->assertExitCode(BackupTableCommand::SUCCESS);
 
         $backupTablePattern1 = 'fathers_backup_'.now()->format('Y_m_d_H_i_s');
         $backupTablePattern2 = 'mothers_backup_'.now()->format('Y_m_d_H_i_s');
@@ -94,7 +94,7 @@ class BackupTableCommandTest extends TestCase
     }
 
     /** @test */
-    public function it_fails_when_any_table_does_not_exist_but_saved_corrected_tables()
+    public function it_fails_when_any_table_does_not_exist_but_saves_corrected_tables()
     {
         Schema::create('existing_table', function ($table) {
             $table->id();
@@ -102,7 +102,7 @@ class BackupTableCommandTest extends TestCase
         });
 
         $this->artisan('backup:tables', ['targets' => 'existing_table', 'non_existent_table'])
-            ->assertSuccessful();
+            ->assertExitCode(BackupTableCommand::SUCCESS);
 
         $backupExistingTablePattern = 'existing_table_backup_'.now()->format('Y_m_d_H_i_s');
         $backupNonExistingTablePattern = 'non_existent_table_backup_'.now()->format('Y_m_d_H_i_s');

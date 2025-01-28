@@ -3,11 +3,12 @@
 namespace WatheqAlshowaiter\BackupTables\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Command\Command as CommandCodes;
 use WatheqAlshowaiter\BackupTables\BackupTables;
 
 class BackupTableCommand extends Command
 {
+    const SUCCESS = 0;
+    const FAILURE = 1;
     protected $signature = 'backup:tables {targets* : The table names or model classes to backup (space-separated)}';
 
     protected $description = 'Backup a specific database table/s based on provided table names or model classes';
@@ -21,13 +22,13 @@ class BackupTableCommand extends Command
 
             if (!$result) {
                 $this->error('Failed to backup table.');
-                return CommandCodes::FAILURE;
+                return self::FAILURE;
             }
 
-            return CommandCodes::SUCCESS;
+            return self::SUCCESS;
         } catch (\Exception $e) {
             $this->error("Error backing up table: {$e->getMessage()}");
-            return CommandCodes::FAILURE;
+            return self::FAILURE;
         }
     }
 }
