@@ -19,7 +19,7 @@ class BackupTablesServiceProvider extends ServiceProvider
                 BackupTableCommand::class,
             ]);
 
-            if($this->app->environment() === 'testing'){
+            if ($this->app->environment() === 'testing') {
                 $this->loadMigrationsFrom(__DIR__.'/../tests/database/migrations');
             }
         }
