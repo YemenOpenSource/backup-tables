@@ -15,6 +15,7 @@ class BackupTableCommandTest extends TestCase
     /** @test */
     public function it_can_backup_a_table()
     {
+        $now = now();
         Schema::create('test_table', function ($table) {
             $table->bigIncrements('id');
             $table->string('name');
@@ -24,7 +25,7 @@ class BackupTableCommandTest extends TestCase
         $this->artisan('backup:tables', ['targets' => 'test_table'])
             ->assertExitCode(BackupTableCommand::SUCCESS);
 
-        $backupTablePattern = 'test_table_backup_'.now()->format('Y_m_d_H_i_s');
+        $backupTablePattern = 'test_table_backup_'.$now->format('Y_m_d_H_i_s');
 
         $this->assertTrue(Schema::hasTable($backupTablePattern));
     }
@@ -32,6 +33,7 @@ class BackupTableCommandTest extends TestCase
     /** @test */
     public function it_can_backup_a_table_by_classname()
     {
+        $now = now();
         Schema::create('test_table', function ($table) {
             $table->bigIncrements('id');
             $table->string('name');
@@ -41,7 +43,7 @@ class BackupTableCommandTest extends TestCase
         $this->artisan(BackupTableCommand::class, ['targets' => 'test_table'])
             ->assertExitCode(BackupTableCommand::SUCCESS);
 
-        $backupTablePattern = 'test_table_backup_'.now()->format('Y_m_d_H_i_s');
+        $backupTablePattern = 'test_table_backup_'.$now->format('Y_m_d_H_i_s');
 
         $this->assertTrue(Schema::hasTable($backupTablePattern));
     }
@@ -56,6 +58,7 @@ class BackupTableCommandTest extends TestCase
     /** @test */
     public function it_can_backup_multiple_tables()
     {
+        $now = now();
         $tables = ['test_table_1', 'test_table_2'];
 
         foreach ($tables as $table) {
@@ -70,7 +73,7 @@ class BackupTableCommandTest extends TestCase
             ->assertExitCode(BackupTableCommand::SUCCESS);
 
         foreach ($tables as $table) {
-            $backupTablePattern = $table.'_backup_'.now()->format('Y_m_d_H_i_s');
+            $backupTablePattern = $table.'_backup_'.$now->format('Y_m_d_H_i_s');
 
             $this->assertTrue(Schema::hasTable($backupTablePattern));
         }
@@ -97,6 +100,8 @@ class BackupTableCommandTest extends TestCase
     /** @test */
     public function it_fails_when_any_table_does_not_exist_but_saves_corrected_tables()
     {
+        $now = now();
+
         Schema::create('existing_table', function ($table) {
             $table->bigIncrements('id');
             $table->timestamps();
@@ -105,8 +110,8 @@ class BackupTableCommandTest extends TestCase
         $this->artisan('backup:tables', ['targets' => 'existing_table', 'non_existent_table'])
             ->assertExitCode(BackupTableCommand::SUCCESS);
 
-        $backupExistingTablePattern = 'existing_table_backup_'.now()->format('Y_m_d_H_i_s');
-        $backupNonExistingTablePattern = 'non_existent_table_backup_'.now()->format('Y_m_d_H_i_s');
+        $backupExistingTablePattern = 'existing_table_backup_'.$now->format('Y_m_d_H_i_s');
+        $backupNonExistingTablePattern = 'non_existent_table_backup_'.$now->format('Y_m_d_H_i_s');
 
         $this->assertTrue(Schema::hasTable($backupExistingTablePattern));
 
