@@ -60,8 +60,7 @@ BackupTables::generateBackup(['users', 'posts']);
 ```php
 BackupTables::generateBackup(User::class); // users_backup_2024_08_22_17_40_01
 // or
-BackupTables::generateBackup([User::class, Post::class]); //-php artisan backup:tables users posts # users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
- users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01 
+BackupTables::generateBackup([User::class, Post::class]); // users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01 
  
 ```
 
