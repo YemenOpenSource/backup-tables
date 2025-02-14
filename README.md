@@ -10,9 +10,8 @@
 ![GitHub Tests For Databases Action Status][ico-tests-for-databases]
 ![GitHub Code Style Action Status][ico-code-style]
 [![Total Downloads][ico-downloads]][link-downloads]
-[![GitHub Stars][link-github-stars]][link-github-stars]
+![GitHub Stars][ico-github-stars]
 
-<!-- icons -->
 [ico-laravel]: https://img.shields.io/badge/Laravel-%E2%89%A56.0-ff2d20?style=flat-square&logo=laravel
 [ico-php]: https://img.shields.io/packagist/php-v/watheqalshowaiter/backup-tables?color=%238892BF&style=flat-square&logo=php
 [ico-version]: https://img.shields.io/packagist/v/watheqalshowaiter/backup-tables.svg?style=flat-square
@@ -21,9 +20,8 @@
 [ico-code-style]: https://img.shields.io/github/actions/workflow/status/watheqalshowaiter/backup-tables/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square
 [ico-tests-for-laravel-versions]: https://img.shields.io/github/actions/workflow/status/watheqalshowaiter/backup-tables/tests-for-laravel-versions.yml?branch=main&label=laravel%20versions%20tests&style=flat-square
 [ico-tests-for-databases]: https://img.shields.io/github/actions/workflow/status/watheqalshowaiter/backup-tables/tests-for-databases.yml?branch=main&label=databases%20tests&style=flat-square
+[ico-github-stars]: https://img.shields.io/github/stars/watheqalshowaiter/backup-tables?style=flat-square
 
-<!-- links -->
-[link-github-stars]: https://img.shields.io/github/stars/watheqalshowaiter/backup-tables?style=flat-square
 [link-packagist]: https://packagist.org/packages/watheqalshowaiter/backup-tables
 [link-downloads]: https://packagist.org/packages/watheqalshowaiter/backup-tables/stats
 <!-- ./shields -->
