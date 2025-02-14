@@ -38,7 +38,8 @@ class ChangeSomeData
 {
     public function handle()
     {
-        BackupTables::generateBackup('users'); // will result: users_backup_2024_08_22_17_40_01
+        BackupTables::generateBackup('users');
+        // result: users_backup_2024_08_22_17_40_01
        
         // change some data..
     }
@@ -58,16 +59,20 @@ BackupTables::generateBackup(['users', 'posts']);
 - Or add Classes as parameters, It will backup their tables
 
 ```php
-BackupTables::generateBackup(User::class); // users_backup_2024_08_22_17_40_01
+BackupTables::generateBackup(User::class);
+// users_backup_2024_08_22_17_40_01
+
 // or
-BackupTables::generateBackup([User::class, Post::class]); // users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01 
- 
+
+BackupTables::generateBackup([User::class, Post::class]);
+// users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01 
 ```
 
 - You can customize the $dataTime format to whatever you want
 
 ```php
-BackupTables::generateBackup('users', 'Y_d_m_H_i'); // users_backup_2024_22_08_17_40
+BackupTables::generateBackup('users', 'Y_d_m_H_i');
+// users_backup_2024_22_08_17_40
 ```
 
 > [!WARNING]
@@ -76,15 +81,21 @@ BackupTables::generateBackup('users', 'Y_d_m_H_i'); // users_backup_2024_22_08_1
 > The default format (Y_m_d_H_i_s) is recommended for most cases.
 
 ```php
-BackupTables::generateBackup('users', 'Y_d_m_H'); // can not generate the same backup in the same hour
-BackupTables::generateBackup('users', 'Y_d_m'); // can not generate the same backup in the same day
+BackupTables::generateBackup('users', 'Y_d_m_H');
+// can not generate the same backup in the same hour
+
+BackupTables::generateBackup('users', 'Y_d_m');
+// can not generate the same backup in the same day
 ```
 
 - Using the artisan command for one or more tables/models
 
 ```bash
-php artisan backup:tables users posts # users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
-php artisan backup:tables \\App\\Models\\User \\App\\Models\\Post # users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
+php artisan backup:tables users posts
+# users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
+
+php artisan backup:tables \\App\\Models\\User \\App\\Models\\Post
+# users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
 ```
 
 ## Why?
