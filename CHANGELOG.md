@@ -2,6 +2,15 @@
 
 All notable changes to `backup-tables` will be documented in this file.
 
+## 1.4.0 - 2025-02-26
+
+### What's Changed
+
+* refactor: change now() to $now in tests to prevent some issues in som… by @WatheqAlshowaiter in https://github.com/WatheqAlshowaiter/backup-tables/pull/5
+* Support laravel 12 & php 8.4 by @WatheqAlshowaiter in https://github.com/WatheqAlshowaiter/backup-tables/pull/13
+
+**Full Changelog**: https://github.com/WatheqAlshowaiter/backup-tables/compare/1.3.0...1.4.0
+
 ## 1.3.0 - 2025-01-28
 
 ### What's Changed
@@ -11,6 +20,7 @@ All notable changes to `backup-tables` will be documented in this file.
 ```bash
 php artisan backup:tables users posts # users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
 php artisan backup:tables \\App\\Models\\User \\App\\Models\\Post # users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
+
 
 ```
 **Full Changelog**: https://github.com/WatheqAlshowaiter/backup-tables/compare/1.2.2...1.3.0
