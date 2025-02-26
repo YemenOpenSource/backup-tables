@@ -13,16 +13,25 @@
 ![GitHub Stars][ico-github-stars]
 
 [ico-laravel]: https://img.shields.io/badge/Laravel-%E2%89%A56.0-ff2d20?style=flat-square&logo=laravel
+
 [ico-php]: https://img.shields.io/packagist/php-v/watheqalshowaiter/backup-tables?color=%238892BF&style=flat-square&logo=php
+
 [ico-version]: https://img.shields.io/packagist/v/watheqalshowaiter/backup-tables.svg?style=flat-square
+
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+
 [ico-downloads]: https://img.shields.io/packagist/dt/watheqalshowaiter/backup-tables.svg?style=flat-square&color=%23007ec6
+
 [ico-code-style]: https://img.shields.io/github/actions/workflow/status/watheqalshowaiter/backup-tables/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square
+
 [ico-tests-for-laravel-versions]: https://img.shields.io/github/actions/workflow/status/watheqalshowaiter/backup-tables/tests-for-laravel-versions.yml?branch=main&label=laravel%20versions%20tests&style=flat-square
+
 [ico-tests-for-databases]: https://img.shields.io/github/actions/workflow/status/watheqalshowaiter/backup-tables/tests-for-databases.yml?branch=main&label=databases%20tests&style=flat-square
+
 [ico-github-stars]: https://img.shields.io/github/stars/watheqalshowaiter/backup-tables?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/watheqalshowaiter/backup-tables
+
 [link-downloads]: https://packagist.org/packages/watheqalshowaiter/backup-tables/stats
 <!-- ./shields -->
 
@@ -36,7 +45,7 @@ Backup single or multiple database tables with ease.
 
 You can install the package via Composer:
 
-```bash
+```sh
 composer require watheqalshowaiter/backup-tables
 ```
 
@@ -131,9 +140,9 @@ beforehand.
 
 ✅ Backup tables from the code using (Facade) or from the console command.
 
-✅ Supports Laravel versions: 11, 10, 9, 8, 7, and 6.
+✅ Supports Laravel versions: 12, 11, 10, 9, 8, 7, and 6.
 
-✅ Supports PHP versions: 8.2, 8.1, 8.0, and 7.4.
+✅ Supports PHP versions: 8.4, 8.3, 8.2, 8.1, 8.0, and 7.4.
 
 ✅ Supports SQL databases: SQLite, MySQL/MariaDB, PostgreSQL, and SQL Server.
 
@@ -155,7 +164,9 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on recent changes.
 
 If you have any ideas or suggestions to improve it or fix bugs, your contribution is welcome.
 
-I encourage you to look at [todos](./todos.md) which are the most important features that need to be added.
+I encourage you to look at [issues](https://github.com/WatheqAlshowaiter/backup-tables/issues) which are the most
+important features
+that need to be added.
 
 If you have something different, submit an issue first to discuss or report a bug, then do a pull request.
 
@@ -168,7 +179,8 @@ them.
 
 - [Watheq Alshowaiter](https://github.com/WatheqAlshowaiter)
 - [Omar Alalwi](https://github.com/omaralalwi) - This package is based on his initial code.
-- [All Contributors](../../contributors)
+
+- [All Contributors](https://github.com/WatheqAlshowaiter/backup-tables/graphs/contributors)
 
 And a special thanks to [The King Creative](https://www.facebook.com/thkingcreative) for the logo ✨
 

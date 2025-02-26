@@ -2,6 +2,7 @@
 
 namespace WatheqAlshowaiter\BackupTables\Tests;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Schema;
 use WatheqAlshowaiter\BackupTables\Commands\BackupTableCommand;
@@ -16,6 +17,7 @@ class BackupTableCommandTest extends TestCase
     public function it_can_backup_a_table()
     {
         $now = now();
+
         Schema::create('test_table', function ($table) {
             $table->bigIncrements('id');
             $table->string('name');
@@ -31,7 +33,7 @@ class BackupTableCommandTest extends TestCase
     }
 
     /** @test */
-    public function it_can_backup_a_table_by_classname()
+    public function it_can_backup_a_table_by_model_class()
     {
         $now = now();
         Schema::create('test_table', function ($table) {
@@ -40,7 +42,12 @@ class BackupTableCommandTest extends TestCase
             $table->timestamps();
         });
 
-        $this->artisan(BackupTableCommand::class, ['targets' => 'test_table'])
+        $testModelClass = new class extends Model
+        {
+            protected $table = 'test_table';
+        };
+
+        $this->artisan(BackupTableCommand::class, ['targets' => get_class($testModelClass)])
             ->assertExitCode(BackupTableCommand::SUCCESS);
 
         $backupTablePattern = 'test_table_backup_'.$now->format('Y_m_d_H_i_s');
