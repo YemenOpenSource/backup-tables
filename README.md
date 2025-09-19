@@ -16,7 +16,6 @@
 [ico-laravel]: https://img.shields.io/badge/Laravel-%E2%89%A56.0-ff2d20?style=flat-square&logo=laravel
 [ico-php]: https://img.shields.io/packagist/php-v/watheqalshowaiter/backup-tables?color=%238892BF&style=flat-square&logo=php
 [ico-version]: https://img.shields.io/packagist/v/watheqalshowaiter/backup-tables.svg?style=flat-square
-[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/watheqalshowaiter/backup-tables.svg?style=flat-square&color=%23007ec6
 [ico-code-style]: https://img.shields.io/github/actions/workflow/status/watheqalshowaiter/backup-tables/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square
 [ico-tests-for-laravel-versions]: https://img.shields.io/github/actions/workflow/status/watheqalshowaiter/backup-tables/tests-for-laravel-versions.yml?branch=main&label=laravel%20versions%20tests&style=flat-square
