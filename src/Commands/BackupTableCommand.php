@@ -12,6 +12,8 @@ class BackupTableCommand extends Command
 
     const FAILURE = 1;
 
+    const STAR_PROMPT_CACHE_KEY = 'backup-tables.github_star_prompted';
+
     protected $signature = 'backup:tables {targets* : The table names or model classes to backup (space-separated)}';
 
     protected $description = 'Backup a specific database table/s based on provided table names or model classes';
@@ -50,7 +52,7 @@ class BackupTableCommand extends Command
             return;
         }
 
-        $cacheKey = 'backup-tables.banner_shown';
+        $cacheKey = self::STAR_PROMPT_CACHE_KEY;
         $repo = 'https://github.com/WatheqAlshowaiter/backup-tables';
 
         if (Cache::get($cacheKey)) {
