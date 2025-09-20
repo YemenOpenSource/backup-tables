@@ -23,7 +23,7 @@ class BackupTableCommand extends Command
         try {
             $result = BackupTables::generateBackup($tables);
 
-            if (!$result) {
+            if (! $result) {
                 $this->error('Failed to backup table.');
 
                 return self::FAILURE;
@@ -46,7 +46,7 @@ class BackupTableCommand extends Command
      */
     private function askToStarRepository()
     {
-        if (!$this->input->isInteractive()) {
+        if (! $this->input->isInteractive()) {
             return;
         }
 
