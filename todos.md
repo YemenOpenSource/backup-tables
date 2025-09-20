@@ -19,3 +19,7 @@
 - [x] return back pint formatting GitHub actions
 - [x] return tests actions to one file
 - [x] clean up the code, fix all todo in the code, and remove commented code
+- [x] add ask to star for first time
+- [ ] improve test by using teardown anb setup for repetitive tasks
+- [ ] improve cache naming
+- [ ] (next version) ability to restore backups
