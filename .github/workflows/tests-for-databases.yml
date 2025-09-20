@@ -97,59 +97,6 @@ jobs:
         env:
           DB_CONNECTION: mysql
           DB_COLLATION: utf8mb4_unicode_ci
-  mssql:
-    runs-on: ubuntu-20.04
-
-    services:
-      sqlsrv:
-        image: mcr.microsoft.com/mssql/server:2019-latest
-        env:
-          ACCEPT_EULA: Y
-          SA_PASSWORD: Forge123
-        ports:
-          - 1433:1433
-
-    strategy:
-      fail-fast: true
-
-    name: SQL Server 2019
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.2
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, sqlsrv, pdo, pdo_sqlsrv, odbc, pdo_odbc, :php-psr
-          tools: composer:v2
-          coverage: none
-
-      - name: Set Framework version
-        run: composer config version "11.x-dev"
-
-      - name: Install dependencies
-        run: composer update --prefer-stable --prefer-dist --no-interaction --no-progress
-
-      - name: Wait for SQL Server to be ready
-        run: |
-          echo "Waiting for SQL Server to start..."
-          for i in {1..30}; do
-            /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Forge123 -Q "SELECT 1" && break
-            echo "SQL Server is starting up..."
-            sleep 2
-          done
-
-      - name: Execute tests
-        run: vendor/bin/phpunit
-        env:
-          DB_CONNECTION: sqlsrv
-          DB_HOST: localhost
-          DB_PORT: 1433
-          DB_DATABASE: master
-          DB_USERNAME: SA
-          DB_PASSWORD: Forge123
   mariadb:
     runs-on: ubuntu-24.04
 
@@ -242,3 +189,64 @@ jobs:
           DB_USERNAME: forge
           DB_PASSWORD: password
 
+
+  mssql:
+    runs-on: ubuntu-24.04
+
+    services:
+      sqlsrv:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        env:
+          ACCEPT_EULA: Y
+          SA_PASSWORD: Forge123
+        ports:
+          - 1433:1433
+
+    name: SQL Server 2019
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, sqlsrv, pdo, pdo_sqlsrv, odbc, pdo_odbc, :php-psr
+          tools: composer:v2
+          coverage: none
+
+      - name: Install SQL Server ODBC Driver and Tools
+        run: |
+          curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+          curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
+          sudo apt-get update
+          sudo ACCEPT_EULA=Y apt-get install -y msodbcsql18 mssql-tools18 unixodbc-dev
+          echo "/opt/mssql-tools18/bin" >> $GITHUB_PATH
+
+      - name: Set Framework version
+        run: composer config version "12.x-dev"
+
+      - name: Install dependencies
+        run: composer update --prefer-stable --prefer-dist --no-interaction --no-progress
+
+      - name: Wait for SQL Server to be ready
+        run: |
+          echo "Waiting for SQL Server to start..."
+          for i in {1..30}; do
+            sqlcmd -S localhost -U SA -P Forge123 -Q "SELECT 1" -C && break
+            echo "SQL Server is starting up..."
+            sleep 2
+          done
+
+      - name: Execute tests
+        run: vendor/bin/phpunit
+        env:
+          DB_CONNECTION: sqlsrv
+          DB_HOST: localhost
+          DB_PORT: 1433
+          DB_DATABASE: master
+          DB_USERNAME: SA
+          DB_PASSWORD: Forge123
+          DB_ENCRYPT: true
+          DB_TRUST_SERVER_CERTIFICATE: true
