@@ -49,7 +49,8 @@ class BackupTableCommandTest extends TestCase
             $table->timestamps();
         });
 
-        $testModelClass = new class extends Model {
+        $testModelClass = new class extends Model
+        {
             protected $table = 'test_table';
         };
 
@@ -185,7 +186,8 @@ class BackupTableCommandTest extends TestCase
         Cache::forget('backup-tables.banner_shown');
 
         // Create a subclass that overrides openUrl()
-        $stubCommand = new class extends BackupTableCommand {
+        $stubCommand = new class extends BackupTableCommand
+        {
             public string $calledWith = '';
 
             // Change to protected so test can inspect
@@ -197,7 +199,7 @@ class BackupTableCommandTest extends TestCase
         };
 
         // Replace the command in Laravel's container so artisan uses our stub
-        $this->app->extend(BackupTableCommand::class, fn() => $stubCommand);
+        $this->app->extend(BackupTableCommand::class, fn () => $stubCommand);
 
         Schema::create('test_table', function ($table) {
             $table->bigIncrements('id');
