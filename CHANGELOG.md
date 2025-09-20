@@ -2,6 +2,20 @@
 
 All notable changes to `backup-tables` will be documented in this file.
 
+## 1.5.1 - 2025-09-20
+
+* Add ask to star repository to on first use
+
+**Full Changelog**: https://github.com/WatheqAlshowaiter/backup-tables/compare/1.4.1...1.5.1
+
+## 1.4.1 - 2025-02-26
+
+### What's Changed
+
+* chore: improve when trigger github action by  https://github.com/WatheqAlshowaiter/backup-tables/pull/14
+
+**Full Changelog**: https://github.com/WatheqAlshowaiter/backup-tables/compare/1.4.0...1.4.1
+
 ## 1.4.0 - 2025-02-26
 
 ### What's Changed
@@ -20,6 +34,8 @@ All notable changes to `backup-tables` will be documented in this file.
 ```bash
 php artisan backup:tables users posts # users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
 php artisan backup:tables \\App\\Models\\User \\App\\Models\\Post # users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
+
+
 
 
 ```

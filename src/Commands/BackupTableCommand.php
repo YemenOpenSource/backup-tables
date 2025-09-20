@@ -53,6 +53,7 @@ class BackupTableCommand extends Command
         }
 
         $cacheKey = self::STAR_PROMPT_CACHE_KEY;
+
         $repo = 'https://github.com/WatheqAlshowaiter/backup-tables';
 
         if (Cache::get($cacheKey)) {
