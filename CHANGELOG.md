@@ -2,6 +2,12 @@
 
 All notable changes to `backup-tables` will be documented in this file.
 
+## 1.5.2 - 2025-09-20
+
+Refactor test and cache key
+
+**Full Changelog**: https://github.com/WatheqAlshowaiter/backup-tables/compare/1.5.1...1.5.2
+
 ## 1.5.1 - 2025-09-20
 
 * Add ask to star repository to on first use
@@ -34,6 +40,7 @@ All notable changes to `backup-tables` will be documented in this file.
 ```bash
 php artisan backup:tables users posts # users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
 php artisan backup:tables \\App\\Models\\User \\App\\Models\\Post # users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
+
 
 
 
