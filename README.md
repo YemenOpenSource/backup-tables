@@ -168,6 +168,11 @@ If you have something different, submit an issue first to discuss or report a bu
 If you find any security vulnerabilities don't hesitate to contact me at `watheqalshowaiter[at]gmail[dot]com` to fix
 them.
 
+## Related Packages
+
+- **[Model Fields](https://github.com/WatheqAlshowaiter/model-fields)** - Quickly retrieve required, nullable, and default fields for any Laravel model.
+- **[Filament Sticky Table Header](https://github.com/WatheqAlshowaiter/filament-sticky-table-header)** - Make Filament table headers stick when scrolling for better UX.
+
 ## Credits
 
 - [Watheq Alshowaiter](https://github.com/WatheqAlshowaiter)
