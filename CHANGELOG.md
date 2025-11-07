@@ -2,6 +2,18 @@
 
 All notable changes to `backup-tables` will be documented in this file.
 
+## 1.5.3 - 2025-10-05
+
+### What's Changed
+
+* chore(deps): bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot[bot] in https://github.com/WatheqAlshowaiter/backup-tables/pull/15
+* chore(deps): bump aglipanci/laravel-pint-action from 2.5 to 2.6 by @dependabot[bot] in https://github.com/WatheqAlshowaiter/backup-tables/pull/17
+* Ask to start by @WatheqAlshowaiter in https://github.com/WatheqAlshowaiter/backup-tables/pull/19
+* Refactor test and cache by @WatheqAlshowaiter in https://github.com/WatheqAlshowaiter/backup-tables/pull/20
+* Update readme
+
+**Full Changelog**: https://github.com/WatheqAlshowaiter/backup-tables/compare/1.5.2...1.5.3
+
 ## 1.5.2 - 2025-09-20
 
 Refactor test and cache key
@@ -40,6 +52,7 @@ Refactor test and cache key
 ```bash
 php artisan backup:tables users posts # users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
 php artisan backup:tables \\App\\Models\\User \\App\\Models\\Post # users_backup_2024_08_22_17_40_01, posts_backup_2024_08_22_17_40_01
+
 
 
 
