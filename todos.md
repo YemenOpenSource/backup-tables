@@ -22,4 +22,3 @@
 - [x] add ask to star for first time
 - [x] improve test by using teardown anb setup for repetitive tasks
 - [x] improve cache naming
-- [ ] (next version) ability to restore backups
