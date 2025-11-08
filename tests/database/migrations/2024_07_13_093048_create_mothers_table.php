@@ -33,6 +33,6 @@ class CreateMothersTable extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('another_parent_test_models');
+        Schema::dropIfExists('mothers');
     }
 }
