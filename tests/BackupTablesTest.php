@@ -3,11 +3,10 @@
 namespace WatheqAlshowaiter\BackupTables\Tests;
 
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Str;
 use WatheqAlshowaiter\BackupTables\BackupTables;
 use WatheqAlshowaiter\BackupTables\Constants;
 use WatheqAlshowaiter\BackupTables\Tests\Models\Father;
@@ -16,7 +15,7 @@ use WatheqAlshowaiter\BackupTables\Tests\Models\Son;
 
 class BackupTablesTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     public function test_return_when_table_is_not_correct()
     {
@@ -40,9 +39,19 @@ class BackupTablesTest extends TestCase
         Carbon::setTestNow($dateTime);
 
         $tableName = 'fathers';
-        BackupTables::generateBackup($tableName);
-
         $newTableName = $tableName.'_backup_'.now()->format('Y_m_d_H_i_s');
+
+        // Drop any existing backup table from previous runs
+        Schema::dropIfExists($newTableName);
+
+        // Create test data
+        Father::create([
+            'first_name' => 'Ahmed',
+            'last_name' => 'Saleh',
+            'email' => 'ahmed@example.com',
+        ]);
+
+        BackupTables::generateBackup($tableName);
 
         $this->assertTrue(Schema::hasTable($newTableName));
 
@@ -53,6 +62,8 @@ class BackupTablesTest extends TestCase
             $this->assertEquals(DB::table($tableName)->value('full_name'), DB::table($newTableName)->value('full_name')); // StoredAs/VirtualAs column
         }
 
+        // Cleanup
+        Schema::dropIfExists($newTableName);
         Carbon::setTestNow();
     }
 
@@ -65,7 +76,7 @@ class BackupTablesTest extends TestCase
 
         Mother::create([
             'types' => 'one',
-            'uuid' => Str::uuid(),
+            'uuid' => '22597b6f-310f-4b8a-a500-6e50058dd0ca',
             'ulid' => '01J5Y93TVJRVFCSRQFHHF2NRC4',
             'description' => "{ar: 'some description'}",
         ]);
