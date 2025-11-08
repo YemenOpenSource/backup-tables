@@ -2,7 +2,7 @@
 
 namespace WatheqAlshowaiter\BackupTables\Tests;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 use WatheqAlshowaiter\BackupTables\Commands\BackupTableCommand;
@@ -12,7 +12,7 @@ use WatheqAlshowaiter\BackupTables\Tests\Models\Temp;
 
 class BackupTableCommandTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     protected function setUp(): void
     {
