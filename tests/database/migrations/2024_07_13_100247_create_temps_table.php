@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /** @noinspection PhpIllegalPsrClassPathInspection */
-
 class CreateTempsTable extends Migration
 {
     public function up(): void
