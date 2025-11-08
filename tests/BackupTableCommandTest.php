@@ -141,7 +141,6 @@ class BackupTableCommandTest extends TestCase
 
     public function test_asks_and_user_declines()
     {
-        $this->markTestSkipped('WIP');
         Cache::forget(BackupTableCommand::STAR_PROMPT_CACHE_KEY);
 
         $now = now();
