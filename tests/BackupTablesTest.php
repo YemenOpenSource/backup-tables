@@ -35,15 +35,23 @@ class BackupTablesTest extends TestCase
 
     public function test_generate_single_table_backup()
     {
-        $this->markTestSkipped('WIP');
-
         $dateTime = Carbon::parse('2024-01-01 12:12:08');
         Carbon::setTestNow($dateTime);
 
         $tableName = 'fathers';
-        BackupTables::generateBackup($tableName);
-
         $newTableName = $tableName.'_backup_'.now()->format('Y_m_d_H_i_s');
+
+        // Drop any existing backup table from previous runs
+        Schema::dropIfExists($newTableName);
+
+        // Create test data
+        Father::create([
+            'first_name' => 'Ahmed',
+            'last_name' => 'Saleh',
+            'email' => 'ahmed@example.com',
+        ]);
+
+        BackupTables::generateBackup($tableName);
 
         $this->assertTrue(Schema::hasTable($newTableName));
 
@@ -54,6 +62,8 @@ class BackupTablesTest extends TestCase
             $this->assertEquals(DB::table($tableName)->value('full_name'), DB::table($newTableName)->value('full_name')); // StoredAs/VirtualAs column
         }
 
+        // Cleanup
+        Schema::dropIfExists($newTableName);
         Carbon::setTestNow();
     }
 
