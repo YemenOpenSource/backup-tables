@@ -162,7 +162,8 @@ class BackupTableCommandTest extends TestCase
         Cache::forget(BackupTableCommand::STAR_PROMPT_CACHE_KEY);
 
         // Create a subclass that overrides openUrl()
-        $stubCommand = new class extends BackupTableCommand {
+        $stubCommand = new class extends BackupTableCommand
+        {
             public string $calledWith = '';
 
             // Change to protected so test can inspect
@@ -174,7 +175,7 @@ class BackupTableCommandTest extends TestCase
         };
 
         // Replace the command in Laravel's container so artisan uses our stub
-        $this->app->extend(BackupTableCommand::class, fn() => $stubCommand);
+        $this->app->extend(BackupTableCommand::class, fn () => $stubCommand);
 
         $now = now();
 
