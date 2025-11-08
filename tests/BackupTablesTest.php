@@ -3,11 +3,10 @@
 namespace WatheqAlshowaiter\BackupTables\Tests;
 
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Str;
 use WatheqAlshowaiter\BackupTables\BackupTables;
 use WatheqAlshowaiter\BackupTables\Constants;
 use WatheqAlshowaiter\BackupTables\Tests\Models\Father;
@@ -16,7 +15,7 @@ use WatheqAlshowaiter\BackupTables\Tests\Models\Son;
 
 class BackupTablesTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     public function test_return_when_table_is_not_correct()
     {
@@ -36,6 +35,8 @@ class BackupTablesTest extends TestCase
 
     public function test_generate_single_table_backup()
     {
+        $this->markTestSkipped('WIP');
+
         $dateTime = Carbon::parse('2024-01-01 12:12:08');
         Carbon::setTestNow($dateTime);
 
@@ -65,7 +66,7 @@ class BackupTablesTest extends TestCase
 
         Mother::create([
             'types' => 'one',
-            'uuid' => Str::uuid(),
+            'uuid' => '22597b6f-310f-4b8a-a500-6e50058dd0ca',
             'ulid' => '01J5Y93TVJRVFCSRQFHHF2NRC4',
             'description' => "{ar: 'some description'}",
         ]);

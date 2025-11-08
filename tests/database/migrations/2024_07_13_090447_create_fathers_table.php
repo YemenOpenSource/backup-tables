@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use WatheqAlshowaiter\BackupTables\Constants;
 
+/** @noinspection PhpIllegalPsrClassPathInspection */
 class CreateFathersTable extends Migration
 {
     public function up(): void
