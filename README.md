@@ -11,6 +11,7 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 ![GitHub Stars][ico-github-stars]
 [![StandWithPalestine][ico-palestine]][link-palestine]
+[![ko-fi][ico-ko-fi]][link-ko-fi]
 
 [ico-laravel]: https://img.shields.io/badge/Laravel-%E2%89%A56.0-ff2d20?style=flat-square&logo=laravel
 [ico-php]: https://img.shields.io/packagist/php-v/watheqalshowaiter/backup-tables?color=%238892BF&style=flat-square&logo=php
@@ -20,10 +21,13 @@
 [ico-test-matrix]: https://img.shields.io/github/actions/workflow/status/watheqalshowaiter/backup-tables/test-matrix.yml?branch=main&label=tests&style=flat-square
 [ico-github-stars]: https://img.shields.io/github/stars/watheqalshowaiter/backup-tables?style=flat-square
 [ico-palestine]: https://raw.githubusercontent.com/TheBSD/StandWithPalestine/main/badges/StandWithPalestine.svg
+[ico-ko-fi]: https://img.shields.io/badge/Ko--fi-Support-ff5f5f?logo=ko-fi&style=flat-square
 
 [link-packagist]: https://packagist.org/packages/watheqalshowaiter/backup-tables
 [link-downloads]: https://packagist.org/packages/watheqalshowaiter/backup-tables/stats
 [link-palestine]: https://github.com/TheBSD/StandWithPalestine/blob/main/docs/README.md
+[link-ko-fi]: https://ko-fi.com/watheq_show
+
 <!-- ./shields -->
 
 Backup single or multiple database tables with ease.
