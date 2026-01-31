@@ -175,6 +175,10 @@ them.
 - **[Model Fields](https://github.com/WatheqAlshowaiter/model-fields)** - Quickly retrieve required, nullable, and default fields for any Laravel model.
 - **[Filament Sticky Table Header](https://github.com/WatheqAlshowaiter/filament-sticky-table-header)** - Make Filament table headers stick when scrolling for better UX.
 
+## Support this project
+
+If this project helps you, consider supporting it on [Ko-fi ☕](https://ko-fi.com/watheq_show).
+
 ## Credits
 
 - [Watheq Alshowaiter](https://github.com/WatheqAlshowaiter)
