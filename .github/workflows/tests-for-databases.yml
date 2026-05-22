@@ -42,7 +42,7 @@ jobs:
         run: composer config version "11.x-dev"
 
       - name: Install dependencies
-        uses: nick-fields/retry@v3
+        uses: nick-fields/retry@v4
         with:
           timeout_minutes: 5
           max_attempts: 5
@@ -86,7 +86,7 @@ jobs:
         run: composer config version "11.x-dev"
 
       - name: Install dependencies
-        uses: nick-fields/retry@v3
+        uses: nick-fields/retry@v4
         with:
           timeout_minutes: 5
           max_attempts: 5
@@ -131,7 +131,7 @@ jobs:
         run: composer config version "11.x-dev"
 
       - name: Install dependencies
-        uses: nick-fields/retry@v3
+        uses: nick-fields/retry@v4
         with:
           timeout_minutes: 5
           max_attempts: 5
@@ -176,7 +176,7 @@ jobs:
         run: composer config version "11.x-dev"
 
       - name: Install dependencies
-        uses: nick-fields/retry@v3
+        uses: nick-fields/retry@v4
         with:
           timeout_minutes: 5
           max_attempts: 5
