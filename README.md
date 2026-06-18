@@ -135,7 +135,7 @@ beforehand.
 
 ✅ Backup tables from the code using (Facade) or from the console command.
 
-✅ Supports Laravel versions: 12, 11, 10, 9, 8, 7, and 6.
+✅ Supports Laravel versions: 13, 12, 11, 10, 9, 8, 7, and 6.
 
 ✅ Supports PHP versions: 8.4, 8.3, 8.2, 8.1, 8.0, and 7.4.
 

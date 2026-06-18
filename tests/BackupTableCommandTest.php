@@ -26,8 +26,7 @@ class BackupTableCommandTest extends TestCase
         parent::tearDown();
     }
 
-    /** @test */
-    public function it_can_backup_a_table()
+    public function test_it_can_backup_a_table()
     {
         $now = now();
 
@@ -41,8 +40,7 @@ class BackupTableCommandTest extends TestCase
         Schema::dropIfExists($backupTablePattern);
     }
 
-    /** @test */
-    public function it_can_backup_a_table_by_model_class()
+    public function test_it_can_backup_a_table_by_model_class()
     {
         $now = now();
 
@@ -55,15 +53,13 @@ class BackupTableCommandTest extends TestCase
         Schema::dropIfExists($backupTablePattern);
     }
 
-    /** @test */
-    public function it_fails_when_table_does_not_exist()
+    public function test_it_fails_when_table_does_not_exist()
     {
         $this->artisan('backup:tables', ['targets' => 'non_existent_table'])
             ->assertExitCode(BackupTableCommand::FAILURE);
     }
 
-    /** @test */
-    public function it_can_backup_multiple_tables()
+    public function test_it_can_backup_multiple_tables()
     {
         $now = now();
         $tables = ['temps', 'fathers'];
@@ -79,8 +75,7 @@ class BackupTableCommandTest extends TestCase
         }
     }
 
-    /** @test */
-    public function it_can_backup_multiple_models()
+    public function test_it_can_backup_multiple_models()
     {
         $models = [Father::class, Mother::class];
         $now = now();
@@ -98,8 +93,7 @@ class BackupTableCommandTest extends TestCase
         Schema::dropIfExists($backupTablePattern2);
     }
 
-    /** @test */
-    public function it_fails_when_any_table_does_not_exist_but_saves_corrected_tables()
+    public function test_it_fails_when_any_table_does_not_exist_but_saves_corrected_tables()
     {
         Schema::dropIfExists('existing_table');
         $now = now();
