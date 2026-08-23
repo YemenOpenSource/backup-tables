@@ -174,6 +174,7 @@ them.
 
 - **[Model Fields](https://github.com/WatheqAlshowaiter/model-fields)** - Quickly retrieve required, nullable, and default fields for any Laravel model.
 - **[Filament Sticky Table Header](https://github.com/WatheqAlshowaiter/filament-sticky-table-header)** - Make Filament table headers stick when scrolling for better UX.
+- **[Quran Validator for PHP](https://github.com/WatheqAlshowaiter/quran-validator-php)** - Validate and verify Quranic verses in LLM-generated text with high accuracy.
 
 ## Support this project
 
